@@ -9,25 +9,48 @@ form {
     gap: 20px;
 }
 
+
+input , select{
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/*PENDIENTE QUITAR COLORES Y DAR FORMATO SI ES NECESARIO A CADA FORMULARIO Y SIN ELIMINAR*/
 .activityform {
-    input {
-        border-radius: 5%;
+    & input, select {
+        width: 100%;
+        padding: 8px;
     }
     color: green;
 }
 
+.companyform {
+    & input, select {
+        width: 100%;
+        padding: 8px;
+    }
+    color: aquamarine;
+}
 .loginform {
-    input {
-        border-radius: 5%;
+    & input, select {
+        width: 100%;
+        padding: 8px;
     }
     color: red;
 }
 
 .searchform {
-    input {
-        border-radius: 5%;
+    & select {
+        width: 100%;
+        padding: 8px;
     }
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
+    & div:first-of-type {
+        display: flex;
+        gap: 20px
+    }
+}
+
+.registerform {
+    color: violet;
 }

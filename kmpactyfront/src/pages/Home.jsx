@@ -1,11 +1,12 @@
-import Searchform from "../components/forms/Searchform";
+import Searchform from "../components/forms/SearchForm";
+
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
-      <p>This is the home page.</p>
+      <h1>Campamentos y actividades en Segovia</h1>
       <Searchform />
+      
     </div>
   );
 };

@@ -1,17 +1,15 @@
-
 import styles from './Forms.module.css'
 
-const Loginform = () => {
+const Registerform = () => {
     return (
         <>
-        <form className={styles.loginform}>
+        <form className={styles.registerform}>
             <input type='email' placeholder='email'/>
             <input type='password' placeholder='contraseña'/>
             <button type='submit'>Entrar</button>
-            
         </form>
         </>
     )
 }
 
-export default Loginform
+export default Registerform

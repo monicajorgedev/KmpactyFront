@@ -2,31 +2,36 @@ import { useState } from 'react'
 import styles from './Forms.module.css'
 
 const Searchform = () => {
+    const [category, setCategory] = useState('')
     const [subcategory, setSubcategory] = useState('')
-    const [deportes, setDeportes] = useState('')
 
     const handleCategoriesChange = (e) => {
-        setSubcategory(e.target.value)
-        setDeportes('')
+        setCategory(e.target.value)
+        setSubcategory('')
     }
     const handleItemChange = (e) => {
-        setDeportes(e.target.value)
+        setSubcategory(e.target.value)
+    }
+    const handleSubmit = (e) => {
+        e.prevent.default
     }
     return (
         <>
-        <form className={styles.searchform}>
+        <form className={styles.searchform} onSubmit={handleSubmit}>
             <div>
-                <input name='category' type='radio' />
-                <label>Campamentos</label>
-                <input name='category' type='radio' />
-                <label>Actividades Niños</label>
-                <input name='category' type='radio' />
-                <label>Actividades Adultos</label>
-                <input name='category' type='radio' />
-                <label>Dias sin cole</label>
+                {/* IMPORTANTE añadir el value a los input y donde esten puestos cambiarlos a {}
+                MIRAR COMO SE ASOCIAN LOS LABELS A LOS INPUTS EN REACT */}
+                <input name='type' type='radio' />
+                <label name='type'>Campamentos</label>
+                <input name='type' type='radio' />
+                <label name='type'>Actividades Niños</label>
+                <input name='type' type='radio' />
+                <label name='type'>Actividades Adultos</label>
+                <input name='type' type='radio' />
+                <label name='type'>Dias sin cole</label>
             </div>
             <div>
-                <select id="subcategories" value={subcategory} onChange={handleCategoriesChange}>
+                <select id="category" value={category} onChange={handleCategoriesChange}>
                     <option value="">Seleccionar una temática</option>
                     <option value="baile">Baile</option>
                     <option value="deporte">Deporte</option>
@@ -39,7 +44,7 @@ const Searchform = () => {
                     <option value="otras">Otras categorias</option>
                 </select>
 
-                <select id='deporte-items' value={deportes} onChange={handleItemChange} disabled={subcategory !== 'deporte'}>
+                <select id='subcategory' value={subcategory} onChange={handleItemChange} disabled={category !== 'deporte'}>
                     <option value="">Seleccione un deporte</option>
                     <option value="futbol">Futbol</option>
                     <option value="baloncesto">Baloncesto</option>
@@ -52,7 +57,14 @@ const Searchform = () => {
                     <option value="otrosdeportes">Otros deportes</option>
                 </select>
             </div>
-           
+                <select id='dates'>
+                    <option value="">Elige fechas</option>
+                    <option value="curso">Curso escolar</option>
+                    <option value="verano">Verano</option>
+                    <option value="santa">Semana Santa</option>
+                    <option value="navidad">Navidad</option>
+                    <option value="sincole">Dias sin cole</option>
+                </select>
             
             <button type='submit'>Buscar</button>
         </form>

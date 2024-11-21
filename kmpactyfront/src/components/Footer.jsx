@@ -1,11 +1,11 @@
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 const Footer = () => {
     return (
         <footer >
             <ul className='acces'>
-                <li>Contacto</li>
+                <li><Link>Contacto</Link></li>
             </ul>
         </footer>
     )
