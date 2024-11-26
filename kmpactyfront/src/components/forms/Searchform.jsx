@@ -1,19 +1,37 @@
 import { useState } from 'react'
+import {type, category, subcategory, dates, cities} from '../../data/data.js'
 import styles from './Forms.module.css'
 
 const Searchform = () => {
-    const [category, setCategory] = useState('')
-    const [subcategory, setSubcategory] = useState('')
+    const [ inputs, setInputs ] = useState({
+        location: {city: ''}
+    })
 
     const handleCategoriesChange = (e) => {
-        setCategory(e.target.value)
-        setSubcategory('')
+        const value = e.target.value
+        setInputs((values)=>({...values, category: value, subcategory:''}))
     }
     const handleItemChange = (e) => {
-        setSubcategory(e.target.value)
+        const value = e.target.value 
+        setInputs((values) => ({...values, subcategory: value}))
     }
+
+    const handleChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+            if (name === 'city') {
+                setInputs( values => ({
+                    ...values, location: {...values.location, city: value,}
+                }))
+            } else {
+                setInputs(values => ({...values,[name]: value}))
+            }
+        setInputs(values => ({...values,[name]: value}))
+    }
+
     const handleSubmit = (e) => {
-        e.prevent.default
+        e.preventDefault()
+        console.log('formulario enviado con los siguientes datos:', inputs)
     }
     return (
         <>
@@ -21,50 +39,33 @@ const Searchform = () => {
             <div>
                 {/* IMPORTANTE añadir el value a los input y donde esten puestos cambiarlos a {}
                 MIRAR COMO SE ASOCIAN LOS LABELS A LOS INPUTS EN REACT */}
-                <input name='type' type='radio' />
-                <label name='type'>Campamentos</label>
-                <input name='type' type='radio' />
-                <label name='type'>Actividades Niños</label>
-                <input name='type' type='radio' />
-                <label name='type'>Actividades Adultos</label>
-                <input name='type' type='radio' />
-                <label name='type'>Dias sin cole</label>
+                {type.map(item => (<label key={item.key} ><input name="type" type='radio'  value={item.key}/>{item.value}</label>))}
             </div>
             <div>
-                <select id="category" value={category} onChange={handleCategoriesChange}>
-                    <option value="">Seleccionar una temática</option>
-                    <option value="baile">Baile</option>
-                    <option value="deporte">Deporte</option>
-                    <option value="hipica">Hípica</option>
-                    <option value="ingles">Inglés</option>
-                    <option value="musica">Música</option>
-                    <option value="naturaleza">Naturaleza</option>
-                    <option value="salud">Salud y Bienestar</option>
-                    <option value="tecnologico">Tecnológico</option>
-                    <option value="otras">Otras categorias</option>
+                <select name="category" value={inputs.category || ''} onChange={handleCategoriesChange} required>
+                    <option value="">Seleccionar una categoria</option>
+                    {category.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
                 </select>
-
-                <select id='subcategory' value={subcategory} onChange={handleItemChange} disabled={category !== 'deporte'}>
+                <select name='subcategory' value={inputs.subcategory || ''}
+                        onChange={handleItemChange} disabled={inputs.category !== 'deporte'}>
                     <option value="">Seleccione un deporte</option>
-                    <option value="futbol">Futbol</option>
-                    <option value="baloncesto">Baloncesto</option>
-                    <option value="paddle">Paddle</option>
-                    <option value="tenis">Tenis</option>
-                    <option value="ritmica">Gimnasia ritmica</option>
-                    <option value="kangoo">Botas Kangoo</option>
-                    <option value="marciales">Artes marciales</option>
-                    <option value="fitness">Fitness</option>
-                    <option value="otrosdeportes">Otros deportes</option>
+                    {subcategory.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
                 </select>
             </div>
-                <select id='dates'>
-                    <option value="">Elige fechas</option>
-                    <option value="curso">Curso escolar</option>
-                    <option value="verano">Verano</option>
-                    <option value="santa">Semana Santa</option>
-                    <option value="navidad">Navidad</option>
-                    <option value="sincole">Dias sin cole</option>
+            <div>
+                <select name='dates' value={inputs.dates} 
+                        onChange={handleChange} required>
+                    <option value="">Fechas</option>
+                    {dates.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
                 </select>
+            </div>
+            <div>
+                <select name='city' value={inputs.location?.city || ''} onChange={handleChange} required>
+                    <option value="">Localidad donde se realiza la actividad</option>
+                    {cities.map(item => (<option key={item.key} value={item.value}>{item.value}</option>))}
+                </select>
+            </div>
+            
             
             <button type='submit'>Buscar</button>
         </form>

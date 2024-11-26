@@ -1,70 +1,81 @@
 import { useState } from 'react'
+import {type, category, subcategory, dates, cities} from '../../data/data.js'
 import styles from './Forms.module.css'
 
 const Activityform = () => {
-    const [category, setCategory] = useState('')
-    const [subcategory, setSubcategory] = useState('')
+    const [inputs, setInputs] = useState({
+        location: {city: '', address: ''}
+    })
 
     const handleCategoriesChange = (e) => {
-        setCategory(e.target.value)
-        setSubcategory('')
+        const value = e.target.value
+        setInputs((values)=>({...values, category: value, subcategory:''}))
     }
     const handleItemChange = (e) => {
-        setSubcategory(e.target.value)
+        const value = e.target.value 
+        setInputs((values) => ({...values, subcategory: value}))
+    }
+    const handleChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        if (name === "city"){
+            setInputs(values => ({...values, location: {...values.location, city: value}}))
+        } else if (name === "address"){
+            setInputs(values => ({...values, location: {...values.location, address: value}}))
+        } else {
+            setInputs(values => ({...values,[name]: value}))
+        }
+        
     }
     const handleSubmit = (e) => {
-        e.prevent.default
+        e.preventDefault()
+        console.log('formulario enviado con los siguientes datos:', inputs)
     }
     return (
         <>
         <form className={styles.activityform} onSubmit={handleSubmit}>
-            <input type='text' placeholder='Nombre actividad o campamento' required/>
-            <select required>
+
+            <input type='text' name='name' value={inputs.name || ''} 
+                    onChange={handleChange} placeholder='Nombre actividad o campamento' required
+            />
+            <select name='type' value={inputs.type || ''} onChange={handleChange} required>
                 <option value="">Tipo</option>
-                <option value="campamento">Campamento</option>
-                <option value="actniños">Actividad Niños</option>
-                <option value="actadultos">Actividad Adultos</option>
-                <option value="sincole">Dias sin cole</option>
+                {type.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
             </select>
-            
-                <select id="category" value={category} onChange={handleCategoriesChange} required>
-                    <option value="">Seleccionar una categoria</option>
-                    <option value="baile">Baile</option>
-                    <option value="deporte">Deporte</option>
-                    <option value="hipica">Hípica</option>
-                    <option value="ingles">Inglés</option>
-                    <option value="musica">Música</option>
-                    <option value="naturaleza">Naturaleza</option>
-                    <option value="salud">Salud y Bienestar</option>
-                    <option value="tecnologico">Tecnológico</option>
-                    <option value="otras">Otras categorias</option>
-                </select>
-                <select id='subcategory' value={subcategory} onChange={handleItemChange} disabled={category !== 'deporte'}>
-                    <option value="">Seleccione un deporte</option>
-                    <option value="futbol">Futbol</option>
-                    <option value="baloncesto">Baloncesto</option>
-                    <option value="paddle">Paddle</option>
-                    <option value="tenis">Tenis</option>
-                    <option value="ritmica">Gimnasia ritmica</option>
-                    <option value="kangoo">Botas Kangoo</option>
-                    <option value="marciales">Artes marciales</option>
-                    <option value="fitness">Fitness</option>
-                    <option value="otrosdeportes">Otros deportes</option>
-                </select>
-                <input type='text' placeholder='Descripción de la actividad' required/>
-                {/* AQUI EN TIPO DE COMPAÑIA DEBERIA EN VALOR COGER EL NOMBRE DE LA EMPRESA REGISTRADA  */}
-                <input type='text'/>
-                <input type='text' placeholder='Dirección donde se realiza la actividad' required/> 
-                <select id='dates'required>
-                    <option value="">Fechas</option>
-                    <option value="curso">Curso escolar</option>
-                    <option value="verano">Verano</option>
-                    <option value="santa">Semana Santa</option>
-                    <option value="navidad">Navidad</option>
-                    <option value="sincole">Dias sin cole</option>
-                </select>
-                <input type='' placeholder='Precio. Ejemplo: 60€/semana ó poner "consultar precio"'required/>
-                <input type='text' placeholder='Duración. Ejemplo: semanal o fechas' required/>
+            <select name="category" value={inputs.category || ''} onChange={handleCategoriesChange} required>
+                <option value="">Seleccionar una categoria</option>
+                {category.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
+            </select>
+            <select name='subcategory' value={inputs.subcategory || ''}
+                    onChange={handleItemChange} disabled={inputs.category !== 'deporte'}>
+                <option value="">Seleccione un deporte</option>
+                {subcategory.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
+            </select>
+            <input type='text' name='description' value={inputs.description || ''} 
+                    onChange={handleChange} placeholder='Descripción de la actividad' required
+            />
+            {/* AQUI EN TIPO DE COMPAÑIA DEBERIA EN VALOR COGER EL NOMBRE DE LA EMPRESA REGISTRADA  */}
+            <input type='text'/>
+            <select name='city' value={inputs.location?.city || ''} onChange={handleChange} required>
+                <option value="">Localidad donde se realiza la actividad</option>
+                {cities.map(item => (<option key={item.key} value={item.value}>{item.value}</option>))}
+            </select>
+             
+            <input type='text' name='address' value={inputs.location?.address || ''} 
+                    onChange={handleChange} placeholder='Dirección donde se realiza la actividad' required
+            /> 
+            <select name='dates' value={inputs.dates} onChange={handleChange} required>
+                <option value="">Fechas</option>
+                {dates.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
+            </select>
+            <input type='text' name='price' value={inputs.price || ''} 
+                    onChange={handleChange} placeholder='Precio. Ejemplo: 60€/semana ó poner "consultar precio"'required
+            />
+            <input type='text' name='duration' value={inputs.duration || ''} 
+                    onChange={handleChange} placeholder='Duración. Ejemplo: semanal o fechas' required
+            />
+            {/* AQUI TENGO QUE VER COMO SUBIR EL CARTEL DE LA ACTIVIDAD */}
+            {/* <input type='text' placeholder='Cartel de la actividad'/> */}
             <button type='submit'>Buscar</button>
         </form>
         </>
