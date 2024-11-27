@@ -10,7 +10,7 @@ form {
 }
 
 
-input , select{
+input , select, textarea{
     border-radius: 10px;
     font-size: 14px;
     font-weight: 600;
@@ -18,7 +18,7 @@ input , select{
 
 /*PENDIENTE QUITAR COLORES Y DAR FORMATO SI ES NECESARIO A CADA FORMULARIO Y SIN ELIMINAR*/
 .activityform {
-    & input, select {
+    & input, select, textarea {
         width: 100%;
         padding: 8px;
     }
@@ -45,9 +45,13 @@ input , select{
         width: 100%;
         padding: 8px;
     }
-    & div:first-of-type {
+    & .type {
         display: flex;
-        gap: 20px
+    }
+    & .filters {
+        display: flex;
+        align-self: flex-start;
+        gap: 10px;
     }
     color: olive;
     font-weight: 700;

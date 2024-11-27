@@ -2,11 +2,9 @@ import { useState } from 'react'
 import {type, category, subcategory, dates, cities} from '../../data/data.js'
 import styles from './Forms.module.css'
 
-const Activityform = () => {
-    const [inputs, setInputs] = useState({
-        location: {city: '', address: ''}
-    })
-
+const Activityform = ({submit, data={}}) => {
+    const [inputs, setInputs] = useState(data)
+   
     const handleCategoriesChange = (e) => {
         const value = e.target.value
         setInputs((values)=>({...values, category: value, subcategory:''}))
@@ -27,35 +25,36 @@ const Activityform = () => {
         }
         
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         console.log('formulario enviado con los siguientes datos:', inputs)
+        setInputs({})
+        submit(inputs)
     }
     return (
         <>
         <form className={styles.activityform} onSubmit={handleSubmit}>
-
             <input type='text' name='name' value={inputs.name || ''} 
                     onChange={handleChange} placeholder='Nombre actividad o campamento' required
             />
             <select name='type' value={inputs.type || ''} onChange={handleChange} required>
                 <option value="">Tipo</option>
-                {type.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
+                {type.map(item => (<option key={item.key} value={item.key} >{item.value}</option>))}
             </select>
             <select name="category" value={inputs.category || ''} onChange={handleCategoriesChange} required>
                 <option value="">Seleccionar una categoria</option>
-                {category.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
+                {category.map(item => (<option key={item.key} value={item.key} >{item.value}</option>))}
             </select>
             <select name='subcategory' value={inputs.subcategory || ''}
                     onChange={handleItemChange} disabled={inputs.category !== 'deporte'}>
                 <option value="">Seleccione un deporte</option>
                 {subcategory.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
             </select>
-            <input type='text' name='description' value={inputs.description || ''} 
+            <textarea type='text' name='description' value={inputs.description || ''} 
                     onChange={handleChange} placeholder='Descripción de la actividad' required
             />
             {/* AQUI EN TIPO DE COMPAÑIA DEBERIA EN VALOR COGER EL NOMBRE DE LA EMPRESA REGISTRADA  */}
-            <input type='text'/>
+            <input type='text' readOnly={'Provincia: Segovia'} placeholder='Provincia: Segovia'/>
             <select name='city' value={inputs.location?.city || ''} onChange={handleChange} required>
                 <option value="">Localidad donde se realiza la actividad</option>
                 {cities.map(item => (<option key={item.key} value={item.value}>{item.value}</option>))}
@@ -76,7 +75,7 @@ const Activityform = () => {
             />
             {/* AQUI TENGO QUE VER COMO SUBIR EL CARTEL DE LA ACTIVIDAD */}
             {/* <input type='text' placeholder='Cartel de la actividad'/> */}
-            <button type='submit'>Buscar</button>
+            <button type='submit'>Crear</button>
         </form>
         </>
     )
