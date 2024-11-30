@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Boxdetail from "../components/Boxdetail";
+import Boxdetail from "../components/BoxDetail";
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'

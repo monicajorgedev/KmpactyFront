@@ -1,4 +1,4 @@
-import Companyform from "../components/forms/Companyform";
+import Companyform from "../components/forms/CompanyForm";
 import { useContext } from "react";
 
 import { useNavigate } from 'react-router-dom'

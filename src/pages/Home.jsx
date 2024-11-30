@@ -1,7 +1,6 @@
-import Searchform from "../components/forms/Searchform";
+import Searchform from "../components/forms/SearchForm";
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getDateLabelByValue } from "../data/data";
 import BoxActivity from "../components/BoxActivity";
 
 const Home = () => {
