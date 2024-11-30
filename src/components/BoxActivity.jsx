@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './Boxactivity.css'
+import './BoxActivity.css'
 import { getDateLabelByValue } from '../data/data';
 
 const BoxActivity = ({data}) => {

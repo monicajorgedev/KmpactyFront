@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './Boxdetail.css'
+import './BoxDetail.css'
 import { getDateLabelByValue } from '../data/data';
 
 const Boxdetail = ({data}) => {
