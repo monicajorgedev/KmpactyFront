@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 
-const Activityupdate = () => {
+const ActivityUpdate = () => {
     const [data, setData] = useState({})
     const params = useParams()
     const urlApi = import.meta.env.VITE_APP_URL_API
@@ -69,4 +69,4 @@ const Activityupdate = () => {
     );
   };
   
-  export default Activityupdate;
+  export default ActivityUpdate;

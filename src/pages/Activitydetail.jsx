@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 
 
-const Activitydetail = () => {
+const ActivityDetail = () => {
     const [data, setData] = useState(null)
     const params = useParams()
     const urlApi = import.meta.env.VITE_APP_URL_API
@@ -80,4 +80,4 @@ const Activitydetail = () => {
     );
   };
   
-  export default Activitydetail;
+  export default ActivityDetail;

@@ -1,7 +1,7 @@
 import Activityform from "../components/forms/ActivityForm";
 import { useNavigate } from 'react-router-dom'
 
-const Activitycreate = () => {
+const ActivityCreate = () => {
   const navigate = useNavigate()
 
     const createSubmit = async (data) => {
@@ -42,4 +42,4 @@ const Activitycreate = () => {
     );
   };
   
-  export default Activitycreate;
+  export default ActivityCreate;

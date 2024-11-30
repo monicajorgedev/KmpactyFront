@@ -6,7 +6,7 @@ import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { UserContext } from "../contexts/UserContext"; 
 
-const Companycreate = () => {
+const CompanyCreate = () => {
   const navigate = useNavigate()
   const { setUser } = useContext(UserContext);
 
@@ -53,4 +53,4 @@ const Companycreate = () => {
     );
   }
   
-  export default Companycreate
+  export default CompanyCreate
