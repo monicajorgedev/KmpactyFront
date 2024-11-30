@@ -1,0 +1,42 @@
+form {
+    background-color: rgba(244, 244, 174, 0.9);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+    color: olive;
+    font-weight: 700;
+    & input, select, textarea {
+        width: 100%;
+        padding: 8px;
+    }
+    & p {
+        color: red;
+    }
+}
+
+
+input , select, textarea{
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/*PENDIENTE QUITAR COLORES Y DAR FORMATO SI ES NECESARIO A CADA FORMULARIO Y SIN ELIMINAR*/
+
+
+.searchform {
+    & .type {
+        display: flex;
+    }
+    & .filters {
+        display: flex;
+        align-self: flex-start;
+        gap: 10px;
+    }
+    color: olive;
+    font-weight: 700;
+}
