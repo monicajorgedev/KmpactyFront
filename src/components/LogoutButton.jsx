@@ -1,7 +1,7 @@
-
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext"; // Importa el contexto
+import styles from './Components.module.css'
 
 function LogoutButton() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function LogoutButton() {
     navigate("/");
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return <button className={styles.logout} onClick={handleLogout}><img  src="src/utils/icons8-salida-50.png"/></button>;
 }
 
 export default LogoutButton;

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import './BoxDetail.css'
 import { getDateLabelByValue } from '../data/data';
+import styles from './Components.module.css'
 
 const Boxdetail = ({data}) => {
     return (
-        <div className='boxdetail'>
+        <div className={styles.boxdetail}>
             <h2>{data.name}</h2>
             <img src={data.image} alt='Cartel de la actividad'></img>
             <p>{data.description}</p>

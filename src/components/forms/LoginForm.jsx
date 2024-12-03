@@ -17,33 +17,28 @@ const Loginform = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            // Inicia sesión en Firebase
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             const token = await user.getIdToken();
         
-            // Guarda el token en localStorage
             localStorage.setItem("authToken", token);
         
-            // Configura los encabezados para la solicitud
             const headers = {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
             };
         
-            // Obtén los datos del usuario desde el backend
             const response = await fetch(`${urlApi}company`, {
             method: "GET",
             headers,
             });
         
-            // Verifica si la respuesta fue exitosa
             if (!response.ok) {
             throw new Error(`Error: ${response.status} ${response.statusText}`);
             }
         
             const userData = await response.json();
-            setUser(userData); // Actualiza el contexto de usuario
+            setUser(userData); 
         
             navigate("/");
         } catch (error) {

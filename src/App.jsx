@@ -1,5 +1,6 @@
 import RoutesApp from './routes/RoutesApp'
 import UserProvider from "./contexts/UserContext";
+import LoadingProvider from "./contexts/LoadingContext";
 import './App.css'
 
 
@@ -9,7 +10,9 @@ function App() {
   return (
     <>
     <UserProvider>
-      <RoutesApp />
+      <LoadingProvider>
+        <RoutesApp />
+      </LoadingProvider>
     </UserProvider>
        
        

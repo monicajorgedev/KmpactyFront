@@ -1,9 +1,11 @@
-import Activityform from "../components/forms/ActivityForm";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import { LoadingContext } from "../contexts/LoadingContext";
+import { useContext } from 'react'
+import Activityform from "../components/forms/Activityform";
 
 const ActivityUpdate = () => {
+  const { setLoading } = useContext(LoadingContext)
     const [data, setData] = useState({})
     const params = useParams()
     const urlApi = import.meta.env.VITE_APP_URL_API
@@ -12,7 +14,7 @@ const ActivityUpdate = () => {
     const navigate = useNavigate()
 
     const fetchDataActivities = async (activityId) => {
-        
+      setLoading(true)
         try {
           const response = await fetch(`${urlApi}activities/${activityId}`)
           console.log(response)
@@ -21,10 +23,16 @@ const ActivityUpdate = () => {
             navigate('/')
             return;
           }
+          else if (response.status === 401) {
+            window.alert('Session caducada. Vuelva a iniciar session');
+            navigate('/login')
+          }
+          setLoading(false)
           const resData = await response.json()
           setData(resData)
            
         } catch (error){
+          setLoading(false)
           console.log(error)
         }
       }
@@ -34,6 +42,7 @@ const ActivityUpdate = () => {
       },[activityId])
 
     const updateSubmit = async (data) => {
+      setLoading(true)
         const urlApiCreate = `${urlApi}activities/${activityId}`
 
         try {
@@ -45,6 +54,7 @@ const ActivityUpdate = () => {
               },
               body: JSON.stringify(data),
           })
+          setLoading(false)
           if (response.ok) {
               const data = await response.json();
               console.log('Success:', data)
@@ -52,6 +62,7 @@ const ActivityUpdate = () => {
 
           }
       } catch (error) {
+        setLoading(false)
           console.error('Error:', error)
       }
     }

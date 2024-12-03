@@ -1,31 +1,42 @@
 import { Link } from 'react-router-dom'
-import './Header.css'
 import LogoutButton from './LogoutButton'
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
-
-
+import styles from './Components.module.css'
 
 const Header = () => {
     const { user } = useContext(UserContext)
 
     return (
         <header >
-        <nav>
-            
+        
             {user
-            ? <> 
-            <button><Link to={"/activities/by-company"}>Mis Actividades</Link></button>
-            <button><Link to={"/activity_create"}>Nueva Actividad</Link></button>
-            <Link to={'/'}><span className='logo'>Kmpacty</span></Link>
-            < LogoutButton />
-            </>
-            : <>
-                <Link to={'/'}><span className='logo'>Kmpacty</span></Link>
-                <button><Link to={"/login"}>Login</Link></button>
-            </> 
+            ? 
+            <nav className={styles.useractive}>
+                <div>
+                    <Link to={'/'}><span className={styles.logo}>Kmpacty</span></Link>
+                    < LogoutButton />    
+                </div>
+                <div>
+                    <span>
+                        <Link to={"/activities/by-company"}>Mis Actividades</Link>
+                    </span>
+                    <span>
+                        <Link to={"/activity_create"}>Nueva Actividad</Link>
+                    </span>    
+                </div>
+            </nav>
+            :
+            <nav className={styles.usernonactive}>
+                <div>
+                    <Link to={'/'}><span className={styles.logo}>Kmpacty</span></Link>
+                </div>
+                <div>
+                    <Link to={"/login"}><img className={styles.login} src='src/utils/icons8-usuario-30.png' alt='logo-usuario'/></Link>
+                </div>
+                
+            </nav>
             }
-        </nav>
         </header>
     )
 }

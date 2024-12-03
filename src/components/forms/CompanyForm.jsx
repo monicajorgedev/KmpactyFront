@@ -16,7 +16,6 @@ const Companyform = ({submit, data={}}) => {
         console.log('formulario enviado con los siguientes datos:', inputs)
         if (inputs.password !== inputs.password_repeat){
                 setError('La contraseña no coincide. Introduce la misma contraseña')
-                // return (window.alert())
         } else {
                 delete inputs.password_repeat
                 await submit(inputs)
@@ -42,9 +41,6 @@ const Companyform = ({submit, data={}}) => {
                         onChange={handleChange} placeholder='Repite la contraseña' required/>
                 <input type='text' name='web' value={inputs.web || ''} 
                         onChange={handleChange} placeholder='Página web'/>
-                {/* COMO PODRIAMOS HACER PARA QUE SUBIERA UN ARCHIVO JPG??? */}
-                <input type='text' name='imgUrl' value={inputs.imgUrl || ''} 
-                        onChange={handleChange} placeholder='Logo empresa'/>
                 {error && <p>{error}</p>}
                 <button type='submit'>Enviar</button>
         </form>

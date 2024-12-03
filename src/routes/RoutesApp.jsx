@@ -4,10 +4,10 @@ import Header from '../components/Header'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import ActivityCreate from '../pages/ActivityCreate'
-import CompanyCreate from '../pages/CompanyCreate'
 import ActivityDetail from '../pages/ActivityDetail'
 import ActivityUpdate from '../pages/ActivityUpdate'
 import ActivitiesByCompany from '../pages/ActivitiesByCompany'
+import CompanyCreate from '../pages/Companycreate'
 
 
 

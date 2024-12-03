@@ -25,6 +25,8 @@ const Activityform = ({submit, data={}}) => {
             setInputs(values => ({...values, location: {...values.location, city: value}}))
         } else if (name === "address"){
             setInputs(values => ({...values, location: {...values.location, address: value}}))
+        } else if (name === 'active') {
+            setInputs(values => ({...values, active: !values.active}))
         } else {
             setInputs(values => ({...values,[name]: value}))
         }
@@ -58,7 +60,6 @@ const Activityform = ({submit, data={}}) => {
             <textarea type='text' name='description' value={inputs.description || ''} 
                     onChange={handleChange} placeholder='Descripción de la actividad' required
             />
-            {/* AQUI EN TIPO DE COMPAÑIA DEBERIA EN VALOR COGER EL NOMBRE DE LA EMPRESA REGISTRADA  */}
             <input type='text' readOnly={'Provincia: Segovia'} placeholder='Provincia: Segovia'/>
             <select name='city' value={inputs.location?.city || ''} onChange={handleChange} required>
                 <option value="">Localidad donde se realiza la actividad</option>
@@ -79,10 +80,13 @@ const Activityform = ({submit, data={}}) => {
                     onChange={handleChange} placeholder='Duración. Ejemplo: semanal o fechas' required
             />
             <span>Sube el cartel de la actividad o campamento</span>
-             <FileBase64
+            {!inputs.image ?  <FileBase64
                 multiple={ false }
-                onDone={ (file) => getFileBase64(file)} />
-            
+                onDone={ (file) => getFileBase64(file)} /> : <p>Imagen ya seleccionada. <button onClick={() => setInputs({...inputs, image: null})} >Eliminar</button></p>}
+             <input type='checkbox' name='active'  checked={inputs.active} 
+                    onChange={handleChange}
+            />
+            <label name='active'>Activo</label>
             <button type='submit'> {inputs._id ? 'Modificar' : 'Crear'}</button>
         </form>
         </>

@@ -1,0 +1,153 @@
+.boxactivity {
+    border: 1px solid olive;
+    border-radius: 5px;
+    background-color: rgba(250, 235, 215, 0.766);
+    color: olive;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    max-width: 350px;
+    height: 100%;
+    & p {
+        margin: 0px;
+    }    
+    & .datos {
+        text-align: start;
+    }
+    & img {
+       max-width: 300px;
+        margin: 30px
+    }
+}
+
+.boxdetail {
+    border: 1px solid olive;
+    border-radius: 5px;
+    background-color: rgba(250, 235, 215, 0.766);
+    color: olive;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    max-width: 500px;
+    text-align: start;
+    & p {
+        margin: 0px;
+    }    
+    & img {
+        max-width: 450px;
+        margin: 30px
+    }
+}
+
+
+header {
+    background-color: olive;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    nav {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 20px;
+    }
+    & .logo {
+        color: white;
+        font-family: "Gill Sans Extrabold", sans-serif;
+        font-weight: 900;
+        font-size: 30px;
+    }
+}
+.useractive {
+    display: flex;
+    flex-direction: column;
+    div:first-child {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    div:nth-child(2) {
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+        padding: 5px;
+    }
+    a {
+        color: antiquewhite;
+    }
+    button {
+        background-color: transparent;
+    }
+    .logout {
+        border-radius: 10px; 
+        & img {
+            width: 20px;
+            background-color: antiquewhite;
+        }
+    }
+}
+
+.usernonactive {
+    display: flex;
+    margin: 20px;
+    .login {
+        background-color: antiquewhite;
+        border-radius: 10px; 
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    header {
+        height: auto;
+        &.login {
+            display: flex;  
+        }  
+        &  a {
+            font-size: 12px;
+        }  
+    }
+    .useractive {
+        display: flex;
+        div:nth-child(2){
+            width: 70%;
+            justify-content: space-between;
+            margin: 20px;
+        }
+    }
+    
+    
+    
+
+}
+
+
+@media screen and (max-width: 768px) {
+    .boxactivity {
+        & img {
+            width: 70%;
+            margin: 5px;        
+            
+        }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .boxdetail {
+        text-align: start;
+        & img {
+            max-width: 100px;
+            margin: 5px;        
+        }
+    }
+  }

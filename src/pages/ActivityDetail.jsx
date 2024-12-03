@@ -3,9 +3,11 @@ import Boxdetail from "../components/BoxDetail";
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
+import { LoadingContext } from "../contexts/LoadingContext";
 
 
 const ActivityDetail = () => {
+  const { setLoading } = useContext(LoadingContext)
     const [data, setData] = useState(null)
     const params = useParams()
     const urlApi = import.meta.env.VITE_APP_URL_API
@@ -15,17 +17,23 @@ const ActivityDetail = () => {
     const navigate = useNavigate()
 
     const fetchDataActivities = async (activityId) => {
+      setLoading(true);
         try {
           const response = await fetch(`${urlApi}activities/${activityId}`)
           if (response.status === 404) {
             window.alert('Actividad no encontrada');
             navigate('/')
             return;
+          } else if (response.status === 401) {
+            window.alert('Session caducada. Vuelva a iniciar session');
+            navigate('/login')
           }
+          setLoading(false);
           const resData = await response.json()
           setData(resData)
         
         } catch (error){
+          setLoading(false);
           console.log(error)
         }
       }
@@ -38,6 +46,7 @@ const ActivityDetail = () => {
         if (!window.confirm('¿Seguro que quieres eliminar la actividad?')) {
           return false
         } 
+        setLoading(true)
         const urlApiDelete = `${urlApi}activities/${activityId}`
   
         try {
@@ -48,12 +57,16 @@ const ActivityDetail = () => {
                   'Authorization': `Bearer ${localStorage.getItem('authToken')}` 
               },
           })
+          setLoading(false)
           if (response.ok) {
               window.alert('Actividad eliminada correctamente')
               navigate(`/`)
-  
+          } else if (response.status === 401) {
+            window.alert('Session caducada. Vuelva a iniciar session');
+            navigate('/login')
           }
         } catch (error) {
+          setLoading(false)
           console.error('Error:', error)
         }
   
