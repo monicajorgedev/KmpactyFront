@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { LoadingContext } from "../contexts/LoadingContext";
 import { useContext } from 'react'
-import Activityform from "../components/forms/Activityform";
+import Activityform from "../components/forms/ActivityForm";
 
 const ActivityUpdate = () => {
   const { setLoading } = useContext(LoadingContext)

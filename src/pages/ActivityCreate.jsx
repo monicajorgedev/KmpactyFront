@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom'
 import { LoadingContext } from "../contexts/LoadingContext";
 import { useContext } from 'react'
-import Activityform from '../components/forms/Activityform';
+import Activityform from '../components/forms/ActivityForm';
 
 
 const ActivityCreate = () => {
