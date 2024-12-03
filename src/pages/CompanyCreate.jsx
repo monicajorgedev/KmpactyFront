@@ -1,6 +1,5 @@
 import Companyform from "../components/forms/CompanyForm";
 import { useContext, useState } from "react";
-
 import { useNavigate } from 'react-router-dom'
 import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";

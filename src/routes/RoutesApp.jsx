@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
 import Header from '../components/Header'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
@@ -7,7 +6,7 @@ import ActivityCreate from '../pages/ActivityCreate'
 import ActivityDetail from '../pages/ActivityDetail'
 import ActivityUpdate from '../pages/ActivityUpdate'
 import ActivitiesByCompany from '../pages/ActivitiesByCompany'
-import CompanyCreate from '../pages/Companycreate'
+import CompanyCreate from '../pages/CompanyCreate'
 
 
 
