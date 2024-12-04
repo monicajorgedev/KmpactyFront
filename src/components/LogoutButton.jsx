@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext"; // Importa el contexto
+import { UserContext } from "../contexts/UserContext"; 
 import styles from './Components.module.css'
 
 function LogoutButton() {
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext); // Accede a la función setUser
+  const { setUser } = useContext(UserContext); 
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    setUser(null); // Establecer el usuario a null en el contexto
+    setUser(null); 
     navigate("/");
   };
 

@@ -4,6 +4,7 @@ import styles from './Forms.module.css'
 
 const Searchform = ({submit}) => {
     const [ inputs, setInputs ] = useState({
+        type: null,
         location: {city: ''}
     })
 
@@ -34,15 +35,26 @@ const Searchform = ({submit}) => {
         console.log('formulario enviado con los siguientes datos:', inputs)
         submit(inputs)
     }
+    const clearFilters = () => {
+        setInputs({location: {
+            type: null,
+            city: ''}})
+    }
+
     return (
         <>
         <form className={styles.searchform} onSubmit={handleSubmit}>
             <div className={styles.type}>
-                {type.map(item => (<label key={item.key} ><input name="type" type='radio' onChange={handleChange}  value={item.key}/>{item.value}</label>))}
+                {type.map(item => (
+                    <label key={item.key} >
+                        <input name="type" type='radio'
+                        onChange={handleChange} checked={inputs.type === item.key}  value={item.key || ''}
+                        />{item.value}
+                    </label>))}
             </div>
             <div className={styles.filters}>
                 <div>
-                <select name='dates' value={inputs.dates} 
+                <select name='dates' value={inputs.dates || ''} 
                         onChange={handleChange} >
                     <option value="">Fechas</option>
                     {dates.map(item => (<option key={item.key} value={item.key}>{item.value}</option>))}
@@ -65,11 +77,10 @@ const Searchform = ({submit}) => {
                 </div>
                 
             </div>
-            
-            
-            
-            <button type='submit'>Buscar</button>
-        </form>
+                <button type='submit'>Buscar</button>    
+                <button type='button' onClick={clearFilters}>Limpiar filtros</button>
+            </form>
+        
         </>
     )
 }

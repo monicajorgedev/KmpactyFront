@@ -33,6 +33,13 @@ form {
     & .filters {
         display: flex;
         gap: 20px;
+        & div {
+            flex-direction: column;
+        }
+    }
+    & div {
+        display: flex;
+        gap: 20px;
     }
     color: olive;
     font-weight: 700;
