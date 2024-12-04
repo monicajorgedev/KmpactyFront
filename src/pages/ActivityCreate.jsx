@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { LoadingContext } from "../contexts/LoadingContext";
 import { useContext } from 'react'
 import Activityform from '../components/forms/ActivityForm';
-
+import styles from './Pages.module.css'
 
 const ActivityCreate = () => {
   const navigate = useNavigate()
@@ -40,7 +40,7 @@ const ActivityCreate = () => {
 
     return (
       <>
-      <div>
+      <div className={styles.activitycreate}>
         <h2>Crea el anuncio de una actividad o campamento</h2>
         <Activityform submit={createSubmit} />
       </div>

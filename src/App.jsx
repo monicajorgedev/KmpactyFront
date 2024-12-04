@@ -2,7 +2,7 @@ import RoutesApp from './routes/RoutesApp'
 import UserProvider from "./contexts/UserContext";
 import LoadingProvider from "./contexts/LoadingContext";
 import './App.css'
-
+import 'react-responsive-modal/styles.css';
 
 
 function App() {

@@ -14,6 +14,7 @@ const ActivityDetail = () => {
     const activityId = params.id
     const { user } = useContext(UserContext)
 
+
     const navigate = useNavigate()
 
     const fetchDataActivities = async (activityId) => {

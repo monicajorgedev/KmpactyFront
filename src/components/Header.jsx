@@ -32,7 +32,7 @@ const Header = () => {
                     <Link to={'/'}><span className={styles.logo}>Kmpacty</span></Link>
                 </div>
                 <div>
-                    <Link to={"/login"}><img className={styles.login} src='icons8-usuario-30.png' alt='logo-usuario'/></Link>
+                    <Link to={"/login"}><img className={styles.login} src='/icons8-usuario-30.png' alt='logo-usuario'/></Link>
                 </div>
                 
             </nav>
