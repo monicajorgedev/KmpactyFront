@@ -13,7 +13,7 @@ function LogoutButton() {
     navigate("/");
   };
 
-  return <button className={styles.logout} onClick={handleLogout}><img  src="src/utils/icons8-salida-50.png"/></button>;
+  return <button className={styles.logout} onClick={handleLogout}><img  src="icons8-salida-50.png"/></button>;
 }
 
 export default LogoutButton;
