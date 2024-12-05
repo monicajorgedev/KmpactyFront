@@ -45,6 +45,8 @@ const Home = () => {
       <Searchform submit={searchSubmit} />
       {data === null ? (
         ""
+      ) : data.length === 0 ? (
+        <p>No se han encontrado resultados con los filtros utilizados.</p>
       ) : (
         <ul>
           {data.map((element) => (
