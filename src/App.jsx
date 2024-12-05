@@ -1,23 +1,19 @@
-import RoutesApp from './routes/RoutesApp'
+import RoutesApp from "./routes/RoutesApp";
 import UserProvider from "./contexts/UserContext";
 import LoadingProvider from "./contexts/LoadingContext";
-import './App.css'
-import 'react-responsive-modal/styles.css';
-
+import "./App.css";
+import "react-responsive-modal/styles.css";
 
 function App() {
- 
   return (
     <>
-    <UserProvider>
-      <LoadingProvider>
-        <RoutesApp />
-      </LoadingProvider>
-    </UserProvider>
-       
-       
-   </>
-  )
+      <UserProvider>
+        <LoadingProvider>
+          <RoutesApp />
+        </LoadingProvider>
+      </UserProvider>
+    </>
+  );
 }
 
-export default App
+export default App;

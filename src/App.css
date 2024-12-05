@@ -8,7 +8,6 @@
   align-items: center;
 }
 
-
 .card {
   padding: 2em;
 }
@@ -27,10 +26,9 @@ ul {
   }
 }
 
-
 @media screen and (max-width: 768px) {
   #root {
-   max-width: 350px;
+    max-width: 350px;
   }
   ul {
     padding: 0px;

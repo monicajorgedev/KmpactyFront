@@ -1,15 +1,14 @@
 .activitycompany {
-    display: flex;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  & li {
+    max-width: 350px;
+    display: flexbox;
     justify-content: center;
-    flex-wrap: wrap;
-    & li {
-        max-width: 350px;
-        display: flexbox;
-        justify-content: center;
-        & img {
-            max-width: 300px;
-            margin: auto;
-        }
+    & img {
+      max-width: 300px;
+      margin: auto;
     }
+  }
 }
-
