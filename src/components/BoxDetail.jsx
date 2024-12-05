@@ -18,7 +18,8 @@ const Boxdetail = ({data}) => {
         </Modal>
         <div className={styles.boxdetail}>
             <h2>{data.name}</h2>
-            <img src={data.image} alt='Cartel de la actividad' onClick={() => setOpen(true)}></img>
+            <img src={data.image} alt='Cartel de la actividad' onClick={() => setOpen(true)}></img>    
+            <div className={styles.datos}>
             <p>{data.description}</p>
             <p>Precio: {data.price} €</p>
             <p>Fechas: {getDateLabelByValue(data.dates)}</p>
@@ -27,6 +28,7 @@ const Boxdetail = ({data}) => {
             <p>Empresa: {data.company.name}</p>
             <p>Email:{data.company.email}</p>
             <p>Teléfono: {data.company.phone}</p>
+            </div>
         </div>
         </>
     )

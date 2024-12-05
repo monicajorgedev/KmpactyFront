@@ -80,13 +80,13 @@ const Activityform = ({submit, data={}}) => {
                     onChange={handleChange} placeholder='Duración. Ejemplo: semanal o fechas' required
             />
             <span>Sube el cartel de la actividad o campamento</span>
-            {!inputs.image ?  <FileBase64
-                multiple={ false }
-                onDone={ (file) => getFileBase64(file)} /> : <p>Imagen ya seleccionada. <button onClick={() => setInputs({...inputs, image: null})} >Eliminar</button></p>}
-             <input type='checkbox' name='active'  checked={inputs.active} 
+            {!inputs.image 
+            ? <FileBase64 multiple={ false } onDone={ (file) => getFileBase64(file)} /> 
+            : <p>Imagen ya seleccionada. <button onClick={() => setInputs({...inputs, image: null})} >Eliminar</button></p>
+            }
+            <label name='active'><input type='checkbox' name='active'  checked={inputs.active} 
                     onChange={handleChange}
-            />
-            <label name='active'>Activo</label>
+            />Activo</label>
             <button type='submit'> {inputs._id ? 'Modificar' : 'Crear'}</button>
         </form>
         </>
